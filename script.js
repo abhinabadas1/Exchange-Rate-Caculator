@@ -2,7 +2,7 @@ const inSym = document.querySelector("#input-currency-symbol")
 const outSym = document.querySelector("#output-currency-symbol")
 const inVal = document.querySelector("#input-currency-value")
 const outVal = document.querySelector("#output-currency-value")
-
+const rateText=document.querySelector("#rateA")
 function calculate() {
     const a = inSym.value 
     const b = outSym.value 
@@ -11,6 +11,7 @@ function calculate() {
     .then(res => res.json())
     .then(data => {
         const rate = (data.conversion_rates[b] / data.conversion_rates[a]);
+        rateText.innerText=`1 ${a} is equal to ${rate.toFixed(4)} ${b}`
         outVal.value = (inVal.value * rate).toFixed(2)
     })
 }
